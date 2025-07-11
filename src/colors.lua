@@ -28,11 +28,17 @@ local M = {
     MAGENTA_BG = create_color(45),
     CYAN_BG =    create_color(46),
     WHITE_BG =   create_color(47),
+
+    MODES = {
+        foreground = 3,
+        background = 4
+    }
 }
 
 
-M.rgb = function(r, g, b)
-    return "\27[38;2;" .. r .. ";" .. g .. ";" .. b .. "m"
+M.rgb = function(r, g, b, mode)
+    local mode_n = mode or 3
+    return "\27[" .. mode_n .. "8;2;" .. r .. ";" .. g .. ";" .. b .. "m"
 end
 
 M.colorize = function(text, color)
